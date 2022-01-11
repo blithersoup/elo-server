@@ -1,25 +1,6 @@
 from __init__ import db, ma
 import datetime
-
-class Articles(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    body = db.Column(db.Text())
-    date = db.Column(db.DateTime, default = datetime.datetime.now)
-
-
-    def __init__(self, title, body):
-        self.title = title
-        self.body = body
-
-class ArticleSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'title', 'body', 'date')
-
-
-article_schema = ArticleSchema()
-articles_schema = ArticleSchema(many=True)
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Person(db.Model): #person
@@ -29,17 +10,22 @@ class Person(db.Model): #person
     passwd = db.Column(db.String(256), unique=True, nullable=False)
     leagueID = db.Column(db.Integer, db.ForeignKey('league.id'))
     elo_score = db.Column(db.Integer, nullable=False)
-    winlist = db.Column(db.ARRAY(db.Integer()))
-    losslist = db.Column(db.ARRAY(db.Integer()))
+    winlist = db.Column(db.Integer())
+    losslist = db.Column(db.Integer())
 
     def __init__(self, username, email, passwd, leagueID):
         self.username = username
         self.email = email
-        self.passwd = passwd
+        self.passwd = generate_password_hash(passwd, method='pbkdf2:sha1', salt_length=8)
         self.leagueID = leagueID
         self.elo_score = 800
-        self.winlist = None
-        self.losslist = None
+        self.winlist = 0
+        self.losslist = 0
+    
+    def VerifyPassword(self, password):
+        if self is not None and check_password_hash(self.passwd, password):
+            return self.username
+
 class PersonSchema(ma.Schema):
     class Meta:
         fields = ('id', 'username','email','passwd','LID','leagueID', 'elo_score')
@@ -62,7 +48,7 @@ class Game(db.Model):
 
 class GameSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'winnner','loser','date', 'leagueID')
+        fields = ('id', 'winner','loser','date', 'leagueID')
 
 game_schema = GameSchema()
 games_schema = GameSchema(many=True)
