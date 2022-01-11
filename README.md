@@ -1,12 +1,21 @@
 # elo-server
-This project is the backend for elo leagues, a website for creating elo ranked leagues.  As the frontend is a work in progress, the website is not yet publicly available.
+This project is the backend for elo leagues, a website for creating elo ranked leagues.  As the frontend is a work in progress, the webiste is not yet publicly available.
+
+## Technology Stack
+* PostgreSQL
+* Flask
+* Flask-SQLAlchemy
+* Flask-JWT
+* Node.js
+* React Native
+
 
 ## Installation and Usage
 Installing this project requires the usage of 3 environment variables:
 
 `$USER`: Database username.
 
-`DBPASS`: Database password.
+`$DBPASS`: Database password.
 
 `$SECRETKEY`: Secret key used for JWT
 
