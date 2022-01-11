@@ -3,6 +3,7 @@ This project is the backend for elo leagues, a website for creating elo ranked l
 
 ## Installation and Usage
 Installing this project requires the usage of 3 environment variables:
+
 `$USER`: Database username.
 
 `DBPASS`: Database password.
@@ -16,5 +17,7 @@ In order to start the program, run app.py.
 
 ## Credits
 Created by:
-@blithersoup
-@willforman
+
+[@blithersoup](https://github.com/blithersoup)
+
+[@willforman](https://github.com/willforman)
