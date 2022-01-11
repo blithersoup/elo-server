@@ -3,9 +3,11 @@ This project is the backend for elo leagues, a website for creating elo ranked l
 
 ## Installation and Usage
 Installing this project requires the usage of 3 environment variables:
-`$USER`: Database username
-`DBPASS`: Database password
-`$SECRETKEY`: Secret key used for jwt
+`$USER`: Database username.
+
+`DBPASS`: Database password.
+
+`$SECRETKEY`: Secret key used for JWT
 
 Alternatively, you can write in your own DB URI, as it is currently formatted for a PostgreSQL DB with name flask.
 
