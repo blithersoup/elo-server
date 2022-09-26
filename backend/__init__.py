@@ -24,7 +24,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-jwt = JWTManager(app)
+# jwt = JWTManager(app)
+
 
 with app.app_context():
     db.create_all()
