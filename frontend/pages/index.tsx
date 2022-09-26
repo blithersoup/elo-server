@@ -12,6 +12,8 @@ import {
   TableContainer,
   Box,
   Heading,
+  Spacer,
+  Stack
 } from '@chakra-ui/react'
 
 interface person {
@@ -34,7 +36,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     (async () => {
-      await fetch(`http://192.168.0.252:3030/league/players/${id}/`, {
+      await fetch(`${process.env.NEXT_PUBLIC_URL}/league/players/${id}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json; encoding=utf=8",
@@ -62,9 +64,13 @@ const Home: NextPage = () => {
 
   return (
     <Box maxWidth="100%">
-      <Heading align="center" pt="5" pb="5" >
-        Official Chess Rankings
-      </Heading>
+      <Stack direction="row">
+        <Spacer />
+        <Heading pt="5" pb="5" >
+          Official Chess Rankings
+        </Heading>
+        <Spacer />
+      </Stack>
       <TableContainer>
         <Table variant='simple'>
           <TableCaption>Official Chess Rankings</TableCaption>
