@@ -15,9 +15,9 @@ def EloRating(Ra, Rb):
     avrank = average(Ra,Rb)
     K = 32
     if avrank > 2099:
-        K = K - 8
+        K -= 8
     if avrank > 2400:
-        K = K - 8
+        K -= 8
     Pb = Probability(Ra, Rb)
     Pa = Probability(Rb, Ra) 
     Ra = Ra + K * (1 - Pa)

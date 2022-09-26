@@ -7,22 +7,22 @@ def AddGame(db):
     winner = request.json['winner']
     loser = request.json['loser']
     leagueID = request.json['leagueID']
+
     league = League.query.get(leagueID)
 
+    WinPlayer = Person.query.filter_by(username=winner).first()
+    LossPlayer = Person.query.filter_by(username=loser).first()
 
-    game = Game(winner, loser, leagueID)
+    game = Game(WinPlayer.id, LossPlayer.id, leagueID)
     league.gamelist.append(game)
     db.session.add(game)
-    WinPlayer = Person.query.get(winner)
-    LossPlayer = Person.query.get(loser)
+
     WinPlayer.winlist = WinPlayer.winlist + 1
     LossPlayer.losslist = LossPlayer.losslist + 1
+    UpdateLeague(db, leagueID)
 
     db.session.commit()
-    UpdateLeague(leagueID)
     return game_schema.jsonify(game)
-
-
 
 def DeleteGame(db, id):
     game = Game.query.get(id)
@@ -31,6 +31,6 @@ def DeleteGame(db, id):
     league_id = game.leagueID
     db.session.delete(game)
     db.session.commit()
-    UpdateLeague(league_id)
+    UpdateLeague(db, league_id)
     return game_schema.jsonify(game)
 

@@ -7,7 +7,6 @@ from .person import GetStats
 
 def AddLeague(db):
     name = request.json['name']
-
     league = League(name)
     db.session.add(league)
     db.session.commit()
@@ -39,14 +38,15 @@ def GetGames(id):
 
 def GetPlayers(id):
     players = Person.query.filter_by(leagueID=id)
-    x = {}
-    num = 1
+    x = []
     for player in players:
         playerret = GetStats(player.id)
         playerstat = json.loads(playerret)
         playerstat['username'] = player.username
-        x[f'{num}'] = playerstat
-        num = num + 1
+        x.append(playerstat)
+    x.sort(key=lambda x:x["elo"], reverse=True)
+    for i, v in enumerate(x, 1):
+        v["rank"] = i
     return json.dumps(x)
 
 def ListLeagues():
@@ -62,15 +62,9 @@ def ListLeagues():
 
 def LeagueInfo(id):
     league = League.query.get(id)
-    if league is None:
-        return "League does not exist"
-    admin = Person.query.get(league.adminID)
-    if admin is None:
-        return "League has no admin"
     ret = {
         'name': league.name,
         'id': league.id,
-        'adminUser': admin.username
     }
     return json.dumps(ret)
 
@@ -98,6 +92,7 @@ def UpdateLeague(db, id):
     db.session.commit()
     return "League updated"
 
+
 def DeleteLeague(db, id):
     league = League.query.get(id)
     if league is None:
@@ -109,6 +104,7 @@ def DeleteLeague(db, id):
     db.session.commit()
     return "league deleted"
 
+'''
 def SetAdmin(db, id):
     adminID = request.json['adminID']
     league = League.query.get(id)
@@ -117,4 +113,4 @@ def SetAdmin(db, id):
     league.adminID = adminID
     db.session.commit()
     return "Admin changed"
-
+'''

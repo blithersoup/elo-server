@@ -30,11 +30,11 @@ def UpdateLeague(db, id):
 
 def AddPerson(db):
     username = request.json['username']
-    email = request.json['email']
-    passwd = request.json['passwd']
+    #email = request.json['email']
+    #passwd = request.json['passwd']
     leagueID = request.json['leagueID']
     league = League.query.get(leagueID)
-    person = Person(username, email, passwd, leagueID)
+    person = Person(username, leagueID)
     league.playerlist.append(person)
     db.session.add(person)
     db.session.commit()
