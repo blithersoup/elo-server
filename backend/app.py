@@ -52,10 +52,11 @@ def add_game():
     if not passAuth(): return r
     return game.AddGame(db)
 
-@app.route('/league/delete/<id>/', methods = ['DELETE'])
-def league_delete(id):
-    if not passAuth(): return r
-    return league.DeleteLeague(db, id)
+
+# @app.route('/league/delete/<id>/', methods = ['DELETE'])
+# def league_delete(id):
+#     if not passAuth(): return r
+#     return league.DeleteLeague(db, id)
 
 @app.route('/league/add', methods = ['POST'])
 def add_league():
