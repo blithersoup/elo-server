@@ -1,2 +1,2 @@
-web: cd frontend && npm run build && npm run start
-server: cd backend && gunicorn runserver:app
+web: cd frontend && npm i && npm run build && npm run start
+server: cd backend && gunicorn app:app
