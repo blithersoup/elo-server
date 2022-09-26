@@ -5,7 +5,7 @@ p = input("Password: ")
 baseurl = "http://192.168.0.252:3030"
 lid = 1
 
-v = input("Add game or player: (g/p)")
+v = input("Add game or player (g/p): ")
 
 if v == 'p':
     n = input("Name: ")
