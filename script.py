@@ -1,17 +1,17 @@
-from requests import post
+from requests import post, get
 
 p = input("Password: ")
 # baseurl = "https://localhost:3000" 
 baseurl = "https://psk-chess-api.herokuapp.com"
 lid = 1
-
-res = post(f"{baseurl}/league/add",
+'''
+res = get(f"{baseurl}/league/list",
         headers = {
             "Content": "application/json"
             },
         json = {
-            "password": p,
-            "name": "psk"
+            "password": p
+            #"name": "psk"
             })
 print(res.status_code)
 print("ok")
@@ -51,4 +51,4 @@ if v == 'g':
     #print(res.json())
     print(res.status_code)
     print("ok")
-'''
+
