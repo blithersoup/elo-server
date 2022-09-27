@@ -5,7 +5,8 @@ from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 import os
 import socket
-from models import Person, Game, League
+
+
 
 #username = os.environ.get('USER')
 #password = os.environ.get('DBPASS')
@@ -31,6 +32,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 # jwt = JWTManager(app)
 
+from models import Person, Game, League
 
 with app.app_context():
     db.create_all()
