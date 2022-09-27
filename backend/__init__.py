@@ -10,6 +10,9 @@ import socket
 #password = os.environ.get('DBPASS')
 #tablename= os.environ.get('TABLENAME')
 uri = os.environ.get('DATABASE_URL')
+uri = uri.split(':')
+uri[0] = 'postgresql'
+usi = ':'.join(uri)
 
 #key = os.environ.get('SECRETKEY')
 ip = socket.gethostbyname(socket.gethostname())
