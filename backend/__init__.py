@@ -12,7 +12,7 @@ import socket
 uri = os.environ.get('DATABASE_URL')
 uri = uri.split(':')
 uri[0] = 'postgresql'
-usi = ':'.join(uri)
+uri = ':'.join(uri)
 
 key = os.environ.get('SECRETKEY')
 ip = socket.gethostbyname(socket.gethostname())
