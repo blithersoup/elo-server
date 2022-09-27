@@ -63,7 +63,7 @@ class League(db.Model):
 
     def __init__(self, name):
         self.name = name
-        self.adminID = 0
+        # self.adminID = 0
 
 class LeagueSchema(ma.Schema):
     class Meta:
