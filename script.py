@@ -2,10 +2,19 @@ from requests import post
 
 p = input("Password: ")
 # baseurl = "https://localhost:3000" 
-baseurl = "http://192.168.0.252:3030"
+baseurl = "https://psk-chess-api.herokuapp.com"
 lid = 1
 
-
+res = post(f"{baseurl}/league/add",
+        headers = {
+            "Content": "application/json"
+            },
+        json = {
+            "password": p,
+            "name": "psk"
+            })
+print(res.status_code)
+print("ok")
 
 '''
 v = input("Add game or player (g/p): ")
