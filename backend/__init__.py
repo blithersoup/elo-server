@@ -9,7 +9,7 @@ import socket
 #username = os.environ.get('USER')
 #password = os.environ.get('DBPASS')
 #tablename= os.environ.get('TABLENAME')
-uri = os.environ.get('URI')
+uri = os.environ.get('DATABASE_URL')
 
 #key = os.environ.get('SECRETKEY')
 ip = socket.gethostbyname(socket.gethostname())
