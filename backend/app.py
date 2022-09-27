@@ -1,6 +1,6 @@
 from __init__ import app, ip, db
 from objectFiles import game, league, person
-from utils.auth import Login
+# from utils.auth import Login
 from flask import request
 import os
 import json
@@ -11,11 +11,12 @@ def passAuth():
     reqpass  = os.environ.get('PASS')
     name = request.json['password']
     return name == reqpass
-
+'''
 @app.route("/login", methods=["POST"])
 def login():
     if not passAuth(): return r
     return Login()
+'''
 
 # @app.route('/league/update/<id>/', methods = ['PUT'])
 # def update_league(id):
