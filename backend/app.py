@@ -101,4 +101,4 @@ def PersonNames(id):
     return league.GetPlayerNames(id)
 
 if __name__ == "__main__":
-    app.run(host = "localhost",port=3030,debug=True)
+    app.run(host = ip,port=3030,debug=True)
