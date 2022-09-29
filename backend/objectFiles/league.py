@@ -40,7 +40,7 @@ def GetPlayerGames(id):
     wGames = Game.query.filter_by(winner=id)
     lGames = Game.query.filter_by(loser=id)
     allGames = [game for game in wGames] + [game for game in lGames]
-    allGames.sort(key=lambda x: x.id)
+    allGames.sort(key=lambda x: x.id, reverse=True)
     allGames = list(map(lambda x: GetGame(x.id), allGames))
     ret = list(map(json.loads, allGames))
     return json.dumps(ret) 

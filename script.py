@@ -1,4 +1,4 @@
-from requests import post, get
+from requests import post, get, delete
 
 p = input("Password: ")
 # baseurl = "https://localhost:3000" 
@@ -36,6 +36,21 @@ if v == 'g':
             "leagueID": lid
         }
     )
+    print(res.status_code)
+    print("ok")
+
+if v == 'd':
+    id = int(input("Deleted game: "))
+    res = delete(f"{baseurl}/game/delete/{id}/",
+             headers = {
+            "Content": "application/json"
+        }, 
+        json = {
+            "password": p,
+            "leagueID": lid
+        }
+
+            )
     print(res.status_code)
     print("ok")
 
