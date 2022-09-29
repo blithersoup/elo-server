@@ -90,5 +90,15 @@ def ListLeagues():
     if not passAuth(): return r
     return league.ListLeagues()
 
+@app.route('/person/games/<id>/', methods = ['GET', 'POST'])
+def PersonGames(id):
+    if not passAuth(): return r
+    return league.GetPlayerGames(id)
+
+@app.route('/person/names/<id>/', methods = ['GET', 'POST'])
+def PersonNames(id):
+    if not passAuth(): return r
+    return league.GetPlayerNames(id)
+
 if __name__ == "__main__":
-    app.run(host = ip,port=3030,debug=True)
+    app.run(host = "localhost",port=3030,debug=True)

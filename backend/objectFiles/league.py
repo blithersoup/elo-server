@@ -36,6 +36,17 @@ def GetGames(id):
         num = num + 1
     return json.dumps(x)
 
+def GetPlayerGames(id):
+    wGames = Game.query.filter_by(winner=id)
+    lGames = Game.query.filter_by(loser=id)
+    allGames = [game for game in wGames] + [game for game in lGames]
+    allGames.sort(key=lambda x: x.id)
+    allGames = list(map(lambda x: GetGame(x.id), allGames))
+    ret = list(map(json.loads, allGames))
+    return json.dumps(ret) 
+
+
+
 def GetPlayers(id):
     players = Person.query.filter_by(leagueID=id)
     x = []
@@ -48,6 +59,14 @@ def GetPlayers(id):
     for i, v in enumerate(x, 1):
         v["rank"] = i
     return json.dumps(x)
+
+def GetPlayerNames(id):
+    players = Person.query.filter_by(leagueID=id)
+    ret = dict()
+    for player in players:
+        ret[player.id] = player.username
+    return json.dumps(ret)
+
 
 def ListLeagues():
     all_leagues = League.query.all()
