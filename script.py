@@ -4,19 +4,7 @@ p = input("Password: ")
 # baseurl = "https://localhost:3000" 
 baseurl = "https://psk-chess-api.herokuapp.com"
 lid = 1
-'''
-res = get(f"{baseurl}/league/list",
-        headers = {
-            "Content": "application/json"
-            },
-        json = {
-            "password": p
-            #"name": "psk"
-            })
-print(res.status_code)
-print("ok")
 
-'''
 v = input("Add game or player (g/p): ")
 
 if v == 'p':
@@ -48,7 +36,6 @@ if v == 'g':
             "leagueID": lid
         }
     )
-    #print(res.json())
     print(res.status_code)
     print("ok")
 
